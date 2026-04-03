@@ -1,0 +1,2 @@
+# Charybdis C Port
+Inspired by the critically acclaimed 2025 title, this remaster intends to retell the story and gameplay in a more direct manner. Written in C, this game is now a text-based adventure game intended to be ran in a terminal window.
