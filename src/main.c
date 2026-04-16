@@ -80,6 +80,18 @@ void dialogue(char dialogue[]) {
     }
 }
 
+int start_menu() {
+    load_asset("assets/CharybdisLogo.txt");
+    int difficulty;
+    printf("Enter a difficulty (0 = easy/1 = hard): ");
+    scanf("%d", &difficulty);
+    dialogue("You play as Theseus, eternally bound to your ship (The Ship of Theseus)");
+    dialogue("In greek mythology, there is common debate whether or not the ship is the same after all of the parts have been replaced.");
+    dialogue("With you know helming the ship, it is up to you to face the seas and find a solution to the paradox yourself!");
+
+    return difficulty;
+}
+
 void ending(int hp) {
     load_asset("assets/TheEND.txt");
 }
@@ -90,16 +102,15 @@ int main() {
     int day = 1;
     int hp = 100;
     int supplies = 0;
+
+    // Start the game + exposition
+    int difficulty = start_menu();
     
-
-
-    printf("Welcome to Charybdis:\n");
-    load_asset("assets/CharybdisLogo.txt");
     // Main gameplay loop
     while (running) {
         printf("M for map\nD for Day Count\nP to go to the nearest port\nG to go forth across the sea\nQ to quit\n");
-        char input;
-        input = getchar();
+        newline_fix: false;
+        char input = getchar();
         printf("__________________\n");
         switch (input) {
             case 'q' | 'Q':
@@ -130,8 +141,11 @@ int main() {
             case 'r' | 'R':
                 repair_ship(&hp, &supplies);
                 break;
+            case '\n':
+                goto newline_fix;
             default:
                 printf("not a valid input, try again: \n");
+                printf("%d\n", input);
                 break;
         }
     }
