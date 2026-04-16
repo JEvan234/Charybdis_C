@@ -10,7 +10,7 @@ void load_asset(const char* filename) {
         return;
     }
 
-    char line[256]; // Adjust buffer size if needed for long lines
+    char line[256];
     while (fgets(line, sizeof(line), file)) {
         printf("%s", line);
     }
