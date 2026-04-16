@@ -44,8 +44,7 @@ void goto_port(int *day, int *hp, int *supplies) {
     bool at_port = true;
     while (at_port) {
         printf("H for health\nS for Supplies\nG to go forth\n");
-        char port_input;
-        scanf(" %c", &port_input);
+        char port_input = getchar();
         printf("__________________\n");
         if (port_input == 'h') {
             printf("Health is %d\n", *hp);
@@ -64,6 +63,21 @@ void goto_port(int *day, int *hp, int *supplies) {
 void repair_ship(int *hp, int *supplies) {
     *hp = *hp + *supplies;
     *supplies = 0;
+}
+
+void dialogue(char dialogue[]) {
+    printf("%s\n", dialogue);
+    bool wait = true;
+    char input;
+    while (wait == true) {
+        printf("Press enter/return to continue");
+        input = getchar();
+        if (input == '\n') {
+            wait = false;
+        } else {
+            continue;
+        }
+    }
 }
 
 void ending(int hp) {
@@ -85,7 +99,7 @@ int main() {
     while (running) {
         printf("M for map\nD for Day Count\nP to go to the nearest port\nG to go forth across the sea\nQ to quit\n");
         char input;
-        scanf(" %c", &input);
+        input = getchar();
         printf("__________________\n");
         switch (input) {
             case 'q' | 'Q':
