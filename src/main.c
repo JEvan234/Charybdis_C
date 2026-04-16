@@ -3,6 +3,22 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void load_asset(const char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error, could not find file\n");
+        return;
+    }
+
+    char line[256]; // Adjust buffer size if needed for long lines
+    while (fgets(line, sizeof(line), file)) {
+        printf("%s", line);
+    }
+
+    fclose(file);
+    printf("\n");
+}
+
 void map(int day) {
     int progress = day*4;
     printf("Map of Progress:\n");
@@ -50,7 +66,9 @@ void repair_ship(int *hp, int *supplies) {
     *supplies = 0;
 }
 
-void ending(int hp) {}
+void ending(int hp) {
+    load_asset("assets/TheEND.txt");
+}
 
 int main() {
     // Initialize Variables
@@ -62,6 +80,7 @@ int main() {
 
 
     printf("Welcome to Charybdis:\n");
+    load_asset("assets/CharybdisLogo.txt");
     // Main gameplay loop
     while (running) {
         printf("M for map\nD for Day Count\nP to go to the nearest port\nG to go forth across the sea\nQ to quit\n");
@@ -79,7 +98,7 @@ int main() {
                 map(day);
                 break;
             case 'g' | 'G':
-                if (day == 4) {
+                if (day <= 4) {
                     combat_encounter(&day, &hp, &supplies);
                     day ++;
                     break;
