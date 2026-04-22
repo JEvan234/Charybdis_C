@@ -12,3 +12,6 @@ Inspired by the critically acclaimed 2025 title, this remaster intends to retell
 - [ ] Your game must feature at least three puzzles (whos challenges can be either Easy or Hard depending on what the player selected at the start).
 - [ ] Your game should be able to be completed by a novice (i.e. your Instructor!) within 3 to 5 minutes of starting.
 - [X] You must reward the player with a win screen when they complete the game.
+
+# Hardware Limitations
+This Game will have portions of the game built to run on Cortex-M4 assembly, A C alternative for these functions *might* be provided at a later date.
